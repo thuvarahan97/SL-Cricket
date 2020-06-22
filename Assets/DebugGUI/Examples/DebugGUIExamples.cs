@@ -39,7 +39,7 @@ public class DebugGUIExamples : MonoBehaviour
 
             
             //get the selected index
-            menuIndex = Commonvariables.selected_inde;
+            menuIndex = Commonvariables.selected_index;
     
         //  //get all options available within this dropdown menu
         //      List<UnityEngine.UI.Dropdown.OptionData> menuOptions = dropdownMenu.options;
@@ -79,17 +79,17 @@ public class DebugGUIExamples : MonoBehaviour
                 DebugGUI.SetGraphProperties("Hip LT Z", "Hip LT Z", -1, 1, 5, new Color(0, 1, 1), true);
             }
 
-            Commonvariables.enableee = true;
+            Commonvariables.enable = true;
             Commonvariables.ran = true;
         }
         StartCoroutine(MyCoroutine());
     }
     public void Pause(){
-        Commonvariables.enableee = false;
+        Commonvariables.enable = false;
         StartCoroutine(MyCoroutine());
     }
     public void Play(){
-        Commonvariables.enableee = true;
+        Commonvariables.enable = true;
         StartCoroutine(MyCoroutine());
     }
     IEnumerator MyCoroutine(){
@@ -135,7 +135,7 @@ public class DebugGUIExamples : MonoBehaviour
 
 
         data = CSV_Reader.Read ("chathu_trial_Session10_Shimmer_5F42_Calibrated_PC");
-        data2 = CSV_Reader.Read ("Joint angles 2");
+        data2 = CSV_Reader.Read (Commonvariables.joint_angles_file_name);
 
         // for(var i=0; i < data.Count; i++) {
         //     print ("X_acc " + data[i]["Shimmer_5F42_Accel_WR_X_CAL"] + " " +
@@ -165,7 +165,7 @@ public class DebugGUIExamples : MonoBehaviour
 
     void Update()
     {
-        if(Commonvariables.enableee == true){
+        if(Commonvariables.enable == true){
                 // Update the fields our attributes are graphing
             // SinField = Mathf.Sin(Time.time * 6);
             float frequency = 1 / Time.deltaTime;
@@ -173,7 +173,7 @@ public class DebugGUIExamples : MonoBehaviour
             float accelerationY = (float) data[i]["Shimmer_5F42_Accel_WR_Y_CAL"];
             float accelerationZ = (float) data[i]["Shimmer_5F42_Accel_WR_Z_CAL"];
             float acceleration = Mathf.Sqrt(Mathf.Pow(accelerationX, 2.0f)+Mathf.Pow(accelerationY, 2.0f)+Mathf.Pow(accelerationZ, 2.0f));
-            if (n%12==0){
+            if (n%Commonvariables.playback_speed==0){
                 // MomentumY = Random.Range(0.0f, 300.0f);
 
                 if(menuIndex == 0){

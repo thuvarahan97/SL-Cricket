@@ -7,8 +7,10 @@ public class Commonvariables : MonoBehaviour {
 
 	// Use this for initialization
 	public  Dropdown dropdownMenu;
-	public static int selected_inde = 0 ;
-	public static bool enableee = false;
+	public static int selected_index = 0 ;
+	public static bool enable = false;
+	public static int playback_speed = 1;
+	public static string joint_angles_file_name = "session4_joint angles";
 
 	public static bool ran = false;
 	void Start () {

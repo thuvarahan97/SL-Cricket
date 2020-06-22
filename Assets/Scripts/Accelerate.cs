@@ -23,7 +23,9 @@ public class Accelerate : MonoBehaviour {
 	}
 
 	void Start () {
-		data = CSV_Reader.Read ("Joint angles1");
+		// data = CSV_Reader.Read ("Joint angles1");
+		data = CSV_Reader.Read (Commonvariables.joint_angles_file_name);
+
 	}
 	
 	int n = 0;
@@ -45,67 +47,69 @@ public class Accelerate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!paused && i<data.Count) {
+		if(Commonvariables.enable == true){
+			if (!paused && i<data.Count) {
 
-			if (n%10==0){
+				if (n%Commonvariables.playback_speed==0){
 
-				if(i>0) {
+					if(i>0) {
 
-					transform.GetChild(1).GetChild(1).Rotate((float)data[i][Hip_RT_X]-(float)data[i-1][Hip_RT_X],0,0);
-					transform.GetChild(1).GetChild(1).Rotate(0,(float)data[i][Hip_RT_Y]-(float)data[i-1][Hip_RT_Y],0);
-					transform.GetChild(1).GetChild(1).Rotate(0,0,(float)data[i][Hip_RT_Z]-(float)data[i-1][Hip_RT_Z]);
+						transform.GetChild(1).GetChild(1).Rotate((float)data[i][Hip_RT_X]-(float)data[i-1][Hip_RT_X],0,0);
+						transform.GetChild(1).GetChild(1).Rotate(0,(float)data[i][Hip_RT_Y]-(float)data[i-1][Hip_RT_Y],0);
+						transform.GetChild(1).GetChild(1).Rotate(0,0,(float)data[i][Hip_RT_Z]-(float)data[i-1][Hip_RT_Z]);
+						
+						transform.GetChild(1).GetChild(0).Rotate((float)data[i][Hip_LT_X]-(float)data[i-1][Hip_LT_X],0,0);
+						transform.GetChild(1).GetChild(0).Rotate(0,(float)data[i][Hip_LT_Y]-(float)data[i-1][Hip_LT_Y],0);
+						transform.GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Hip_LT_Z]-(float)data[i-1][Hip_LT_Z]);
+
+						transform.GetChild(1).GetChild(1).GetChild(0).Rotate((float)data[i][Knee_RT_X]-(float)data[i-1][Knee_RT_X],0,0);
+						transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,(float)data[i][Knee_RT_Y]-(float)data[i-1][Knee_RT_Y],0);
+						transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Knee_RT_Z]-(float)data[i-1][Knee_RT_Z]);
+
+						transform.GetChild(1).GetChild(0).GetChild(0).Rotate((float)data[i][Knee_LT_X]-(float)data[i-1][Knee_LT_X],0,0);
+						transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,(float)data[i][Knee_LT_Y]-(float)data[i-1][Knee_LT_Y],0);
+						transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,0,(float)data[i][Knee_LT_Z]-(float)data[i-1][Knee_LT_Z]);
 					
-					transform.GetChild(1).GetChild(0).Rotate((float)data[i][Hip_LT_X]-(float)data[i-1][Hip_LT_X],0,0);
-					transform.GetChild(1).GetChild(0).Rotate(0,(float)data[i][Hip_LT_Y]-(float)data[i-1][Hip_LT_Y],0);
-					transform.GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Hip_LT_Z]-(float)data[i-1][Hip_LT_Z]);
+						// Showing angles of joints
+						angleTextLeftHip.text = 
+						"Left Hip Joint Angles: \n" +
+						"X: " + data[i][Hip_LT_X] + ", \n" + 
+						"Y: " + data[i][Hip_LT_Y] + ", \n" + 
+						"Z: " + data[i][Hip_LT_Z];
 
-					transform.GetChild(1).GetChild(1).GetChild(0).Rotate((float)data[i][Knee_RT_X]-(float)data[i-1][Knee_RT_X],0,0);
-					transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,(float)data[i][Knee_RT_Y]-(float)data[i-1][Knee_RT_Y],0);
-					transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Knee_RT_Z]-(float)data[i-1][Knee_RT_Z]);
+						angleTextLeftKnee.text = 
+						"Left Knee Joint Angles: \n" +
+						"X: " + data[i][Knee_LT_X] + ", \n" + 
+						"Y: " + data[i][Knee_LT_Y] + ", \n" + 
+						"Z: " + data[i][Knee_LT_Z];
 
-					transform.GetChild(1).GetChild(0).GetChild(0).Rotate((float)data[i][Knee_LT_X]-(float)data[i-1][Knee_LT_X],0,0);
-					transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,(float)data[i][Knee_LT_Y]-(float)data[i-1][Knee_LT_Y],0);
-					transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,0,(float)data[i][Knee_LT_Z]-(float)data[i-1][Knee_LT_Z]);
-				
-					// Showing angles of joints
-					angleTextLeftHip.text = 
-					"Left Hip Joint Angles: \n" +
-					"X: " + data[i][Hip_LT_X] + ", \n" + 
-					"Y: " + data[i][Hip_LT_Y] + ", \n" + 
-					"Z: " + data[i][Hip_LT_Z];
+						angleTextRightHip.text = 
+						"Right Hip Joint Angles: \n" +
+						"X: " + data[i][Hip_RT_X] + ", \n" + 
+						"Y: " + data[i][Hip_RT_Y] + ", \n" + 
+						"Z: " + data[i][Hip_RT_Z];
 
-					angleTextLeftKnee.text = 
-					"Left Knee Joint Angles: \n" +
-					"X: " + data[i][Knee_LT_X] + ", \n" + 
-					"Y: " + data[i][Knee_LT_Y] + ", \n" + 
-					"Z: " + data[i][Knee_LT_Z];
+						angleTextRightKnee.text = 
+						"Right Knee Joint Angles: \n" +
+						"X: " + data[i][Knee_RT_X] + ", \n" + 
+						"Y: " + data[i][Knee_RT_Y] + ", \n" + 
+						"Z: " + data[i][Knee_RT_Z];
 
-					angleTextRightHip.text = 
-					"Right Hip Joint Angles: \n" +
-					"X: " + data[i][Hip_RT_X] + ", \n" + 
-					"Y: " + data[i][Hip_RT_Y] + ", \n" + 
-					"Z: " + data[i][Hip_RT_Z];
+					}			
+					
+					if(i<data.Count){
+						i++;
+					}
 
-					angleTextRightKnee.text = 
-					"Right Knee Joint Angles: \n" +
-					"X: " + data[i][Knee_RT_X] + ", \n" + 
-					"Y: " + data[i][Knee_RT_Y] + ", \n" + 
-					"Z: " + data[i][Knee_RT_Z];
-
-				}			
-				
-				if(i<data.Count){
-					i++;
 				}
+
+			n++;
 
 			}
 
-		n++;
-
-		}
-
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			this.Pause();
+			if (Input.GetKeyDown(KeyCode.Space)) {
+				this.Pause();
+			}
 		}
 	}
 	
