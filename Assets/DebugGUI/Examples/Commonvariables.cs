@@ -19,6 +19,6 @@ public class Commonvariables : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		 selected_inde = this.dropdownMenu.value;
+		 selected_index = this.dropdownMenu.value;
 	}
 }
