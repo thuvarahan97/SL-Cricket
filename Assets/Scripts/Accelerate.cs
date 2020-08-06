@@ -55,20 +55,20 @@ public class Accelerate : MonoBehaviour {
 					if(i>0) {
 
 						transform.GetChild(1).GetChild(1).Rotate((float)data[i][Hip_RT_X]-(float)data[i-1][Hip_RT_X],0,0);
-						transform.GetChild(1).GetChild(1).Rotate(0,(float)data[i][Hip_RT_Y]-(float)data[i-1][Hip_RT_Y],0);
-						transform.GetChild(1).GetChild(1).Rotate(0,0,(float)data[i][Hip_RT_Z]-(float)data[i-1][Hip_RT_Z]);
+						// transform.GetChild(1).GetChild(1).Rotate(0,(float)data[i][Hip_RT_Y]-(float)data[i-1][Hip_RT_Y],0);
+						// transform.GetChild(1).GetChild(1).Rotate(0,0,(float)data[i][Hip_RT_Z]-(float)data[i-1][Hip_RT_Z]);
 						
 						transform.GetChild(1).GetChild(0).Rotate((float)data[i][Hip_LT_X]-(float)data[i-1][Hip_LT_X],0,0);
-						transform.GetChild(1).GetChild(0).Rotate(0,(float)data[i][Hip_LT_Y]-(float)data[i-1][Hip_LT_Y],0);
-						transform.GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Hip_LT_Z]-(float)data[i-1][Hip_LT_Z]);
+						// transform.GetChild(1).GetChild(0).Rotate(0,(float)data[i][Hip_LT_Y]-(float)data[i-1][Hip_LT_Y],0);
+						// transform.GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Hip_LT_Z]-(float)data[i-1][Hip_LT_Z]);
 
 						transform.GetChild(1).GetChild(1).GetChild(0).Rotate((float)data[i][Knee_RT_X]-(float)data[i-1][Knee_RT_X],0,0);
-						transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,(float)data[i][Knee_RT_Y]-(float)data[i-1][Knee_RT_Y],0);
-						transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Knee_RT_Z]-(float)data[i-1][Knee_RT_Z]);
+						// transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,(float)data[i][Knee_RT_Y]-(float)data[i-1][Knee_RT_Y],0);
+						// transform.GetChild(1).GetChild(1).GetChild(0).Rotate(0,0,(float)data[i][Knee_RT_Z]-(float)data[i-1][Knee_RT_Z]);
 
 						transform.GetChild(1).GetChild(0).GetChild(0).Rotate((float)data[i][Knee_LT_X]-(float)data[i-1][Knee_LT_X],0,0);
-						transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,(float)data[i][Knee_LT_Y]-(float)data[i-1][Knee_LT_Y],0);
-						transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,0,(float)data[i][Knee_LT_Z]-(float)data[i-1][Knee_LT_Z]);
+						// transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,(float)data[i][Knee_LT_Y]-(float)data[i-1][Knee_LT_Y],0);
+						// transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,0,(float)data[i][Knee_LT_Z]-(float)data[i-1][Knee_LT_Z]);
 					
 						// Showing angles of joints
 						angleTextLeftHip.text = 

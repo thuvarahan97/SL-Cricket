@@ -10,7 +10,7 @@ public class Commonvariables : MonoBehaviour {
 	public static int selected_index = 0 ;
 	public static bool enable = false;
 	public static int playback_speed = 1;
-	public static string joint_angles_file_name = "session4_joint angles";
+	public static string joint_angles_file_name = "walking data";
 
 	public static bool ran = false;
 	void Start () {
