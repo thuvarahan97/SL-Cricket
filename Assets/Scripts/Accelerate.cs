@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,33 +24,47 @@ public class Accelerate : MonoBehaviour {
 
 	void Start () {
 		// data = CSV_Reader.Read ("Joint angles1");
-		data = CSV_Reader.Read (Commonvariables.joint_angles_file_name);
+		data = CSV_Reader.Read (Config.joint_angles_file_name);
 
 	}
 	
 	int n = 0;
 	int i = 0;
 	
-	string Hip_RT_X = "Right_Hip_FlexExt";
-	string Hip_RT_Y = "Right_Hip_AbdAdd";
-	string Hip_RT_Z = "Right_Hip_IntExt";
-	string Hip_LT_X = "Left_Hip_FlexExt";
-	string Hip_LT_Y = "Left_Hip_AbdAdd";
-	string Hip_LT_Z = "Left_Hip_IntExt";
-	string Knee_RT_X = "Right_KneeFlexExt";
-	string Knee_RT_Y = "Right_KneeAbdAdd";
-	string Knee_RT_Z = "Right_KneeIntExt";
-	string Knee_LT_X = "Left_KneeFlexExt";
-	string Knee_LT_Y = "Left_KneeAbdAdd";
-	string Knee_LT_Z = "Left_KneeFlexExt";
+ 	string Hip_RT_X = Config.Hip_RT_X;
+	string Hip_RT_Y = Config.Hip_RT_Y;
+	string Hip_RT_Z = Config.Hip_RT_Z;
+	string Hip_LT_X = Config.Hip_LT_X;
+	string Hip_LT_Y = Config.Hip_LT_Y;
+	string Hip_LT_Z = Config.Hip_LT_Z;
+	string Knee_RT_X = Config.Knee_RT_X;
+	string Knee_RT_Y = Config.Knee_RT_Y;
+	string Knee_RT_Z = Config.Knee_RT_Z;
+	string Knee_LT_X = Config.Knee_LT_X;
+	string Knee_LT_Y = Config.Knee_LT_Y;
+    string Knee_LT_Z = Config.Knee_LT_Z;
+
+	float Hip_RT_X_increase = 0f;
+	float Hip_RT_Y_increase = 0f;
+	float Hip_RT_Z_increase = 0f;
+	float Hip_LT_X_increase = 0f;
+	float Hip_LT_Y_increase = 0f;
+	float Hip_LT_Z_increase = 0f;
+	float Knee_RT_X_increase = 0f;
+	float Knee_RT_Y_increase = 0f;
+	float Knee_RT_Z_increase = 0f;
+	float Knee_LT_X_increase = 0f;
+	float Knee_LT_Y_increase = 0f;
+    float Knee_LT_Z_increase = 0f;
+
 
 	// Update is called once per frame
 	void Update () {
 
-		if(Commonvariables.enable == true){
+		if(Config.enable == true){
 			if (!paused && i<data.Count) {
 
-				if (n%Commonvariables.playback_speed==0){
+				if (n%Config.playback_speed==0){
 
 					if(i>0) {
 
@@ -71,17 +85,17 @@ public class Accelerate : MonoBehaviour {
 						transform.GetChild(1).GetChild(0).GetChild(0).Rotate(0,0,(float)data[i][Knee_LT_Z]-(float)data[i-1][Knee_LT_Z]);
 					
 						// Showing angles of joints
-						angleTextLeftHip.text = 
-						"Left Hip Joint Angles: \n" +
-						"X: " + data[i][Hip_LT_X] + ", \n" + 
-						"Y: " + data[i][Hip_LT_Y] + ", \n" + 
-						"Z: " + data[i][Hip_LT_Z];
+						// angleTextLeftHip.text = 
+						// "Left Hip Joint Angles: \n" +
+						// "X: " + data[i][Hip_LT_X] + ", \n" + 
+						// "Y: " + data[i][Hip_LT_Y] + ", \n" + 
+						// "Z: " + data[i][Hip_LT_Z];
 
-						angleTextLeftKnee.text = 
-						"Left Knee Joint Angles: \n" +
-						"X: " + data[i][Knee_LT_X] + ", \n" + 
-						"Y: " + data[i][Knee_LT_Y] + ", \n" + 
-						"Z: " + data[i][Knee_LT_Z];
+						// angleTextLeftKnee.text = 
+						// "Left Knee Joint Angles: \n" +
+						// "X: " + data[i][Knee_LT_X] + ", \n" + 
+						// "Y: " + data[i][Knee_LT_Y] + ", \n" + 
+						// "Z: " + data[i][Knee_LT_Z];
 
 						angleTextRightHip.text = 
 						"Right Hip Joint Angles: \n" +

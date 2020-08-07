@@ -35,12 +35,11 @@ public class DebugGUIExamples : MonoBehaviour
 
     public void Run(){
 
-        if (Commonvariables.ran ==false){
+        if (Config.ran ==false){
 
             
             //get the selected index
-            menuIndex = Commonvariables.selected_index;
-    
+            menuIndex = Config.selected_index;
         //  //get all options available within this dropdown menu
         //      List<UnityEngine.UI.Dropdown.OptionData> menuOptions = dropdownMenu.options;
         //  //get the string value of the selected index
@@ -79,17 +78,17 @@ public class DebugGUIExamples : MonoBehaviour
                 DebugGUI.SetGraphProperties("Hip LT Z", "Hip LT Z", -1, 1, 5, new Color(0, 1, 1), true);
             }
 
-            Commonvariables.enable = true;
-            Commonvariables.ran = true;
+            Config.enable = true;
+            Config.ran = true;
         }
         StartCoroutine(MyCoroutine());
     }
     public void Pause(){
-        Commonvariables.enable = false;
+        Config.enable = false;
         StartCoroutine(MyCoroutine());
     }
     public void Play(){
-        Commonvariables.enable = true;
+        Config.enable = true;
         StartCoroutine(MyCoroutine());
     }
     IEnumerator MyCoroutine(){
@@ -135,7 +134,7 @@ public class DebugGUIExamples : MonoBehaviour
 
 
         data = CSV_Reader.Read ("chathu_trial_Session10_Shimmer_5F42_Calibrated_PC");
-        data2 = CSV_Reader.Read (Commonvariables.joint_angles_file_name);
+        data2 = CSV_Reader.Read (Config.joint_angles_file_name);
 
         // for(var i=0; i < data.Count; i++) {
         //     print ("X_acc " + data[i]["Shimmer_5F42_Accel_WR_X_CAL"] + " " +
@@ -150,22 +149,22 @@ public class DebugGUIExamples : MonoBehaviour
     int i2 = 0;
     int mass = 80;
 
-    string Hip_RT_X = "Right_Hip_FlexExt";
-	string Hip_RT_Y = "Right_Hip_AbdAdd";
-	string Hip_RT_Z = "Right_Hip_IntExt";
-	string Hip_LT_X = "Left_Hip_FlexExt";
-	string Hip_LT_Y = "Left_Hip_AbdAdd";
-	string Hip_LT_Z = "Left_Hip_IntExt";
-	string Knee_RT_X = "Right_KneeFlexExt";
-	string Knee_RT_Y = "Right_KneeAbdAdd";
-	string Knee_RT_Z = "Right_KneeIntExt";
-	string Knee_LT_X = "Left_KneeFlexExt";
-	string Knee_LT_Y = "Left_KneeAbdAdd";
-    string Knee_LT_Z = "Left_KneeIntExt";
+    string Hip_RT_X = Config.Hip_RT_X;
+	string Hip_RT_Y = Config.Hip_RT_Y;
+	string Hip_RT_Z = Config.Hip_RT_Z;
+	string Hip_LT_X = Config.Hip_LT_X;
+	string Hip_LT_Y = Config.Hip_LT_Y;
+	string Hip_LT_Z = Config.Hip_LT_Z;
+	string Knee_RT_X = Config.Knee_RT_X;
+	string Knee_RT_Y = Config.Knee_RT_Y;
+	string Knee_RT_Z = Config.Knee_RT_Z;
+	string Knee_LT_X = Config.Knee_LT_X;
+	string Knee_LT_Y = Config.Knee_LT_Y;
+    string Knee_LT_Z = Config.Knee_LT_Z;
 
     void Update()
     {
-        if(Commonvariables.enable == true){
+        if(Config.enable == true){
                 // Update the fields our attributes are graphing
             // SinField = Mathf.Sin(Time.time * 6);
             float frequency = 1 / Time.deltaTime;
@@ -173,7 +172,7 @@ public class DebugGUIExamples : MonoBehaviour
             float accelerationY = (float) data[i]["Shimmer_5F42_Accel_WR_Y_CAL"];
             float accelerationZ = (float) data[i]["Shimmer_5F42_Accel_WR_Z_CAL"];
             float acceleration = Mathf.Sqrt(Mathf.Pow(accelerationX, 2.0f)+Mathf.Pow(accelerationY, 2.0f)+Mathf.Pow(accelerationZ, 2.0f));
-            if (n%Commonvariables.playback_speed==0){
+            if (n%Config.playback_speed==0){
                 // MomentumY = Random.Range(0.0f, 300.0f);
 
                 if(menuIndex == 0){
